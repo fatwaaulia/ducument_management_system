@@ -63,12 +63,19 @@ if (in_array($id_role, [1, 2])) {
 --------------------------------------------------------------*/
 if (in_array($id_role, roleAccessByTitle('App Settings'))) {
     $routes->group("$slug_role/app-settings", ['filter' => 'EnsureLogin'], static function ($routes) {
-        $routes->get('edit', 'AppSettings::edit');
-        $routes->get('maintenance', 'AppSettings::maintenance');
+        $routes->get('/', 'AppSettings::edit');
     });
     $routes->group("api/app-settings", ['filter' => 'EnsureLogin'], static function ($routes) {
         $routes->post('update/(:segment)', 'AppSettings::update/$1');
-        $routes->post('send-email', 'AppSettings::sendEmail');
+    });
+}
+
+if (in_array($id_role, roleAccessByTitle('Maintenance'))) {
+    $routes->group("$slug_role/maintenance", ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('email', 'Maintenance::email');
+    });
+    $routes->group("api/maintenance", ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->post('email', 'Maintenance::sendEmail');
     });
 }
 
@@ -77,6 +84,32 @@ if (in_array($id_role, roleAccessByTitle('Log Login'))) {
     $routes->group('api/log-login', ['filter' => 'EnsureLogin'], static function ($routes) {
         $routes->get('/', 'LogLogin::index');
         $routes->post('delete/(:segment)', 'LogLogin::delete/$1');
+    });
+}
+
+if (in_array($id_role, roleAccessByTitle('Dokumen'))) {
+    $routes->group("$slug_role/dokumen", ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('/', 'Dokumen::main');
+        $routes->get('detail/(:segment)', 'Dokumen::detail/$1');
+        $routes->get('new', 'Dokumen::new');
+        $routes->get('edit/(:segment)', 'Dokumen::edit/$1');
+    });
+    $routes->group('api/dokumen', ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('/', 'Dokumen::index');
+        $routes->post('create', 'Dokumen::create');
+        $routes->post('update/(:segment)', 'Dokumen::update/$1');
+        $routes->post('delete/(:segment)', 'Dokumen::delete/$1');
+    });
+}
+
+if (in_array($id_role, roleAccessByTitle('Permintaan Persetujuan'))) {
+    $routes->group("$slug_role/permintaan-persetujuan", ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('/', 'Dokumen::permintaanPersetujuan');
+        $routes->get('edit/(:segment)', 'Dokumen::edit/$1');
+    });
+    $routes->group('api/permintaan-persetujuan', ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('/', 'Dokumen::indexPermintaanPersetujuan');
+        $routes->post('update/(:segment)', 'Dokumen::update/$1');
     });
 }
 

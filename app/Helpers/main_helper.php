@@ -124,21 +124,24 @@ function menuSidebar()
 			'role'	=> [1, 2, 3],
 			'type'	=> 'no-collapse',
 		],
-		[
-			'title'	=> 'Dropdown',
-			'icon'	=> 'fa-solid fa-list-ul',
+        [
+			'title'	=> 'DOKUMEN',
 			'role'	=> [1],
-			'type'	=> 'collapse',
-			'collapse' => [
-				[
-					'title'	=> 'Item 1',
-					'url'	=> base_url(userSession('slug_role')) . '/item-satu',
-				],
-				[
-					'title'	=> 'Item 2',
-					'url'	=> base_url(userSession('slug_role')) . '/item-dua',
-				],
-			],
+			'type'	=> 'heading',
+		],
+        [
+			'title'	=> 'Dokumen',
+			'icon'	=> 'fa-solid fa-file-pdf',
+			'url'	=> base_url(userSession('slug_role')) . '/dokumen',
+			'role'	=> [1],
+			'type'	=> 'no-collapse',
+		],
+        [
+			'title'	=> 'Permintaan Persetujuan',
+			'icon'	=> 'fa-solid fa-hourglass-start',
+			'url'	=> base_url(userSession('slug_role')) . '/permintaan-persetujuan',
+			'role'	=> [1],
+			'type'	=> 'no-collapse',
 		],
 		[
 			'title'	=> 'MASTER DATA',
@@ -174,19 +177,26 @@ function menuSidebar()
 			'role'	=> [1, 2, 3],
 			'type'	=> 'heading',
 		],
-		[
+        [
 			'title'	=> 'App Settings',
 			'icon'	=> 'fa-solid fa-gear',
+			'url'	=> base_url(userSession('slug_role')) . '/app-settings',
+			'role'	=> [1],
+			'type'	=> 'no-collapse',
+		],
+		[
+			'title'	=> 'Maintenance',
+			'icon'	=> 'fa-solid fa-screwdriver-wrench',
 			'role'	=> [1],
 			'type'	=> 'collapse',
 			'collapse' => [
 				[
-					'title'	=> 'Edit',
-					'url'	=> base_url(userSession('slug_role')) . '/app-settings/edit',
+					'title'	=> 'Email',
+					'url'	=> base_url(userSession('slug_role')) . '/maintenance/email',
 				],
 				[
-					'title'	=> 'Maintenance',
-					'url'	=> base_url(userSession('slug_role')) . '/app-settings/maintenance',
+					'title'	=> 'Notifikasi',
+					'url'	=> base_url(userSession('slug_role')) . '/maintenance/notifikasi',
 				],
 			],
 		],

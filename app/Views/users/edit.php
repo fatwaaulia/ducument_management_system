@@ -17,7 +17,7 @@
                                         <div class="position-relative">
                                             <img src="<?= webFile($base_name, $data['foto'], $data['updated_at'], true, 'user') ?>" class="wh-150 cover-center rounded-circle" id="frame_foto">
                                             <div class="position-absolute" style="bottom: 0px; right: 0px;">
-                                                <button class="btn btn-secondary rounded-circle" style="padding:8px 10px" type="button" data-bs-toggle="modal" data-bs-target="#option">
+                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" data-bs-toggle="modal" data-bs-target="#option">
                                                     <i class="fa-solid fa-camera fa-xl"></i>
                                                 </button>
                                                 <div class="modal fade" id="option" tabindex="-1">

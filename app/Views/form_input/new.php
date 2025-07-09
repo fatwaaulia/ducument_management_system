@@ -20,7 +20,7 @@
                                     <div class="col-md-6 position-relative">
                                         <img src="<?= base_url('assets/uploads/default.png') ?>" class="w-100 cover-center" id="frame_gambar">
                                         <div class="position-absolute" style="bottom: 0px; right: 0px;">
-                                            <button class="btn btn-secondary rounded-circle" style="padding:8px 10px" type="button" onclick="dom('#gambar').click()">
+                                            <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#gambar').click()">
                                                 <i class="fa-solid fa-camera fa-lg"></i>
                                             </button>
                                             <input type="file" class="form-control d-none" id="gambar" name="gambar" accept=".png,.jpg,.jpeg" onchange="dom('#frame_gambar').src = window.URL.createObjectURL(this.files[0]);">

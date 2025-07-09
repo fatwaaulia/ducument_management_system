@@ -1,6 +1,6 @@
 <?php
 $app_settings = model('AppSettings')->find(1);
-$logo_web = webFile('app_settings', $app_settings['logo'], $app_settings['updated_at'], true);
+$logo_web = webFile('app_settings', $app_settings['logo'], $app_settings['updated_at']);
 ?>
 
 <div class="container-fluid" style="font-size:14px;font-family:sans-serif;">

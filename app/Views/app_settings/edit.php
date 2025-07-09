@@ -1,17 +1,16 @@
-<div class="section">
-    <div class="section-header">
-        <h1><?= isset($title) ? $title : '' ?></h1>
-    </div>
-</div>
-
 <section class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="my-4"><?= isset($title) ? $title : '' ?></h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <form id="form">
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xxl-6">
                                 <div class="mb-3">
                                     <label for="nama_aplikasi" class="form-label">Nama Aplikasi</label>
                                     <input type="text" class="form-control" id="nama_aplikasi" name="nama_aplikasi" value="<?= $data['nama_aplikasi'] ?>" placeholder="Masukkan nama aplikasi">
@@ -46,14 +45,14 @@
                                     <div class="invalid-feedback" id="invalid_maps"></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xxl-6">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="logo" class="form-label">Logo</label>
                                         <div class="position-relative">
                                             <img src="<?= webFile($base_name, $data['logo'], $data['updated_at'], true) ?>" class="w-100 h-100 cover-center" id="frame_logo">
                                             <div class="position-absolute" style="bottom:0px;right:0px">
-                                                <button class="btn btn-secondary rounded-circle" style="padding:8px 10px" type="button" onclick="dom('#logo').click()">
+                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#logo').click()">
                                                     <i class="fa-solid fa-camera fa-lg"></i>
                                                 </button>
                                                 <input type="file" class="form-control d-none" id="logo" name="logo" accept=".png,.jpg,.jpeg" onchange="dom('#frame_logo').src = window.URL.createObjectURL(this.files[0]);">
@@ -66,7 +65,7 @@
                                         <div class="position-relative">
                                             <img src="<?= webFile($base_name, $data['favicon'], $data['updated_at'], true) ?>" class="w-100 cover-center" id="frame_favicon">
                                             <div class="position-absolute" style="bottom:0px;right:0px">
-                                                <button class="btn btn-secondary rounded-circle" style="padding:8px 10px" type="button" onclick="dom('#favicon').click()">
+                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#favicon').click()">
                                                     <i class="fa-solid fa-camera fa-lg"></i>
                                                 </button>
                                                 <input type="file" class="form-control d-none" id="favicon" name="favicon" accept=".png,.jpg,.jpeg" onchange="dom('#frame_favicon').src = window.URL.createObjectURL(this.files[0]);">

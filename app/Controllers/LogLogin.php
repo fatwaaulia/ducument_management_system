@@ -18,6 +18,8 @@ class LogLogin extends BaseController
     --------------------------------------------------------------*/
     public function main()
     {
+        model('LogLogin')->where('created_at <', date('Y-m-d H:i:s', strtotime('-3 months')))->delete();
+
         $query = $_SERVER['QUERY_STRING'] ? ('?' . $_SERVER['QUERY_STRING']) : '';
         $data = [
             'get_data'   => $this->base_api . $query,

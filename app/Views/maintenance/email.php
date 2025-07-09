@@ -1,10 +1,9 @@
-<div class="section">
-    <div class="section-header">
-        <h1><?= isset($title) ? $title : '' ?></h1>
-    </div>
-</div>
-
 <section class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="my-4"><?= isset($title) ? $title : '' ?></h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -49,7 +48,7 @@
 <script>
 dom('#form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const endpoint = '<?= $base_api ?>send-email';
+    const endpoint = '<?= $base_api ?>email';
     submitData(dom('#form'), endpoint);
 });
 </script>

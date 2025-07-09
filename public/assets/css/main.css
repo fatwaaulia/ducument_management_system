@@ -2,6 +2,7 @@
     --main-color: #6777ef;
     --main-color-hover: #5969e1;
     --dark-color: #202124;
+    --light-color: #fafafa;
     --gray-color: #aab7cf;
     --border-radius: var(--bs-border-radius);
     --box-shadow-form-input: unset;
@@ -123,6 +124,7 @@ body.modal-open .header { padding: 0 20px!important; }
 
 .text-primary { color: var(--main-color)!important; }
 .text-dark { color: var(--dark-color)!important; }
+.text-light { color: var(--light-color)!important; }
 
 .bg-primary { background: var(--main-color)!important; }
 
@@ -204,6 +206,10 @@ input:focus,
 .uneditable-input:focus {
     border-color: var(--main-color)!important;
     box-shadow: var(--box-shadow-form-input)!important;
+}
+
+.dropdown-item:hover {
+    color: var(--dark-color)!important;
 }
 
 .dropdown-item.active, .dropdown-item:active {

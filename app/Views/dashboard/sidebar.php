@@ -18,7 +18,10 @@
                 </ul>
             </form>
             <ul class="navbar-nav">
-                <li class="dropdown dropdown-list-toggle"><a href="#" data-bs-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+                <li class="dropdown dropdown-list-toggle">
+                    <a href="#" data-bs-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep">
+                        <i class="far fa-bell text-light"></i>
+                    </a>
                     <div class="dropdown-menu dropdown-list dropdown-menu-end">
                         <div class="dropdown-header">Notifications
                             <div class="float-end">
@@ -89,7 +92,7 @@
                     $base_route	= base_url($segment_1 . $segment_2);
 
                     // Custom Base Route
-                    if ($segment_2 == '/app-settings') {
+                    if ($segment_2 == '/maintenance') {
                         $base_route	= base_url($segment_1 . $segment_2 . $segment_3);
                     }
                     // End - Custom Base Route

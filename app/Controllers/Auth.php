@@ -94,7 +94,6 @@ class Auth extends BaseController
             'username'   => $user['username'] ?? $username,
             'ip_address' => $this->request->getIPAddress(),
         ];
-        model('LogLogin', false)->where('created_at <', date('Y-m-d H:i:s', strtotime('-3 months')))->delete();        
 
         if ($user && password_verify($password, $user['password'])) {
             $log['status'] = 'Success';
