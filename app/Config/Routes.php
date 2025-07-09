@@ -116,6 +116,16 @@ if (in_array($id_role, roleAccessByTitle('Permintaan Persetujuan'))) {
 /*--------------------------------------------------------------
   # Master Data
 --------------------------------------------------------------*/
+if (in_array($id_role, roleAccessByTitle('Role'))) {
+    $routes->get("$slug_role/role", 'Role::main', ['filter' => 'EnsureLogin']);
+    $routes->group('api/role', ['filter' => 'EnsureLogin'], static function ($routes) {
+        $routes->get('/', 'Role::index');
+        $routes->post('create', 'Role::create');
+        $routes->post('update/(:segment)', 'Role::update/$1');
+        $routes->post('delete/(:segment)', 'Role::delete/$1');
+    });
+}
+
 if (in_array($id_role, roleAccessByTitle('User Management'))) {
     $routes->group("$slug_role/users", ['filter' => 'EnsureLogin'], static function ($routes) {
         $routes->get('/', 'Users::main');

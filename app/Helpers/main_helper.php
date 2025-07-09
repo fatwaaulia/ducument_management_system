@@ -26,11 +26,7 @@ function userSession($field = null)
     if (! session()->isLogin) return '';
 
     $id_user = session()->get('id_user');
-    $user = model('Users', false)
-            ->select('users.*, role.nama as nama_role, role.slug as slug_role')
-            ->join('role', 'role.id = users.id_role')
-            ->where('users.id', $id_user)
-            ->first();
+    $user = model('Users')->find($id_user);
     
     if (! $user) return 'Pengguna tidak ditemukan!';
 
@@ -147,6 +143,13 @@ function menuSidebar()
 			'title'	=> 'MASTER DATA',
 			'role'	=> [1],
 			'type'	=> 'heading',
+		],
+        [
+			'title'	=> 'Role',
+			'icon'	=> 'fa-solid fa-user-tag',
+			'url'	=> base_url(userSession('slug_role')) . '/role',
+			'role'	=> [1],
+			'type'	=> 'no-collapse',
 		],
 		[
 			'title'	=> 'User Management',

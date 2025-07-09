@@ -7,4 +7,5 @@ use CodeIgniter\Model;
 class Role extends Model
 {
     protected $table = 'role';
+    protected $protectFields = false;
 }
