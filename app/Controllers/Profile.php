@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Administrator extends BaseController
+class Profile extends BaseController
 {
     protected $base_name;
     protected $model_name;
@@ -10,15 +10,15 @@ class Administrator extends BaseController
 
     public function __construct()
     {
-        $this->base_name   = 'administrator';
-        $this->model_name  = 'Users';
-        $this->upload_path = dirUpload() . 'users/';
+        $this->base_name    = 'profile';
+        $this->model_name   = 'Users';
+        $this->upload_path  = dirUpload() . 'users/';
     }
 
     /*--------------------------------------------------------------
     # Front-End
     --------------------------------------------------------------*/
-    public function profile()
+    public function profilev1()
     {
         $id = userSession('id');
 
@@ -29,14 +29,14 @@ class Administrator extends BaseController
         ];
         
         $view['sidebar'] = view('dashboard/sidebar');
-        $view['content'] = view($this->base_name . '/profile', $data);
+        $view['content'] = view($this->base_name . '/v1', $data);
         return view('dashboard/header', $view);
     }
 
     /*--------------------------------------------------------------
     # API
     --------------------------------------------------------------*/
-    public function updateProfile()
+    public function updateProfilev1()
     {
         $id = userSession('id');
         $find_data = model($this->model_name)->find($id);
@@ -45,7 +45,7 @@ class Administrator extends BaseController
             'foto'     => 'max_size[foto,2048]|ext_in[foto,png,jpg,jpeg]|mime_in[foto,image/png,image/jpeg]|is_image[foto]',
             'nama'     => 'required',
             'alamat'   => 'max_length[255]',
-            'no_hp'    => 'permit_empty|numeric|min_length[10]|max_length[20]',
+            'no_hp'    => 'permit_empty|numeric|min_length[10]|max_length[15]',
             'username' => "required|alpha_numeric|is_unique[users.username,id,$id]",
         ];
         if (!$this->validate($rules)) {
@@ -73,7 +73,6 @@ class Administrator extends BaseController
         $data = [
             'nama'     => ucwords($this->request->getVar('nama')),
             'foto'     => $filename_foto,
-            'jenis_kelamin' => $this->request->getVar('jenis_kelamin'),
             'alamat'   => $this->request->getVar('alamat'),
             'no_hp'    => $this->request->getVar('no_hp'),
             'username' => $this->request->getVar('username'),
@@ -129,7 +128,7 @@ class Administrator extends BaseController
         return $this->response->setStatusCode(200)->setJSON([
             'status'  => 'success',
             'message' => 'Password berhasil diubah. Silakan login kembali.',
-            'route'   => base_url('login/administrator'),
+            'route'   => base_url('login'),
         ]);
     }
 

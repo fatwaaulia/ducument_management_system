@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2025 at 04:01 AM
+-- Generation Time: Jul 09, 2025 at 07:02 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.9
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ci4_lab`
+-- Database: `document_management_system`
 --
 
 -- --------------------------------------------------------
@@ -51,32 +51,29 @@ INSERT INTO `app_settings` (`id`, `nama_aplikasi`, `nama_perusahaan`, `deskripsi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `berita`
+-- Table structure for table `dokumen`
 --
 
-CREATE TABLE `berita` (
-  `id` int NOT NULL,
-  `created_by` bigint NOT NULL,
+CREATE TABLE `dokumen` (
+  `id` bigint NOT NULL,
+  `kategori` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `judul` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(260) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `sampul` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `konten` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `viewed` bigint NOT NULL,
+  `ringkasan` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `dokumen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id_user_tingkat_1` bigint NOT NULL,
+  `status_tingkat_1` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `updated_at_tingkat_1` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `updated_at` datetime NOT NULL,
+  `created_by` bigint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `berita`
+-- Dumping data for table `dokumen`
 --
 
-INSERT INTO `berita` (`id`, `created_by`, `judul`, `slug`, `sampul`, `konten`, `viewed`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Sertifikat Propeka Dengan Penyelenggara Dari Lembaga Sertifikasi Profesi (LSP)', 'sertifikat-propeka-dengan-penyelenggara-dari-lembaga-sertifikasi-profesi-lsp', '1717770190_6690a2921adfacc2e870.jpg', '<p><span style=\"font-size: 16px;\">Sertifikat Propeka adalah sertifikat kompetensi profesi yang diberikan oleh Lembaga Sertifikasi Profesi (LSP) Propeka kepada individu yang telah memenuhi standar kompetensi tertentu dalam bidang keahlian mereka. Sertifikat ini bertujuan untuk meningkatkan daya saing dan profesionalisme tenaga kerja di Indonesia.</span><br></p>', 43, '2024-06-07 21:23:10', '2024-10-25 07:42:20'),
-(6, 1, 'Om Putin Semringah Karena Yo Ndak Tau, Rusian Army Go War III', 'om-putin-semringah-karena-yo-ndak-tau-rusian-army-go-war-iii', '1721448111_7eb01e0f3e9643dfd9dd.jpg', '<p>asdlakl asndlkadlkm alksdlasdlk maslkdmlaks mdlasmdklmaslkdmlka mlsdsadamslkd masld lksajdkl jaslkdj lkasdlk asd kalsjdlk ajsdlkj alksjd askl jdasd lkasjdlk jaslkdjlka sasldakl <span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">asdlakl asndlkadlkm alksdlasdlk maslkdmlaks mdlasmdklmaslkdmlka mlsdsadamslkd masld lksajdkl jaslkdj lkasdlk asd kalsjdlk ajsdlkj alksjd askl jdasd lkasjdlk jaslkdjlka sasldakl </span><span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">asdlakl asndlkadlkm alksdlasdlk maslkdmlaks mdlasmdklmaslkdmlka mlsdsadamslkd masld lksajdkl jaslkdj lkasdlk asd kalsjdlk ajsdlkj alksjd askl jdasd lkasjdlk jaslkdjlka sasldakl</span></p>', 81, '2024-07-20 11:01:51', '2024-12-20 18:06:16'),
-(7, 1, 'Kerja Kerja Kerja Semangat', 'kerja-kerja-kerja-semangat', '1729669040_b4d321cf5771f0cf0f36.jpg', '<p><img src=\"http://localhost:8080/assets/uploads/berita/content_images/34b999caa9e3e395-0.jpg\" data-filename=\"yann-maignan-rRiAzFkJPMo-unsplash.jpg\" style=\"width: 25%;\"><br><br>percobaan dulu ygy.</p>', 1, '2024-10-23 14:36:00', '2024-11-12 14:34:47'),
-(8, 2, 'Indonesia Juara Dunia FIFA World Cup 2026', 'indonesia-juara-dunia-fifa-world-cup-2026', '1734504761_d7482ee54f7540cff502.jpg', '<p><b>Breaking News!</b><br><br>Secara mengejutkan timnas indonesia mampu menjuarai Piala Dunia.</p>', 3, '2024-12-18 13:51:00', '2025-02-20 10:27:26'),
-(9, 1, 'Indonesia Juara Dunia FIFA World Cup 2026', 'indonesia-juara-dunia-fifa-world-cup-2026-scwym', '1734521401_487e30b3df3e68e30971.jpg', '<p>asdasdasd</p>', 25, '2024-12-18 18:28:00', '2025-05-05 08:42:46'),
-(10, 2, 'Suprime Leader Kim Jong Unch', 'suprime-leader-kim-jong-unch', '1734732623_d686e12737caef0615e2.jpg', '<p>Aselole, lorem ipsum dolor <span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">lorem ipsum dolor </span><span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">lorem ipsum dolor </span><span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">lorem ipsum dolor </span><span style=\"font-size: 15px; color: var(--dark-theme-white-color); background-color: var(--bs-card-bg); font-weight: var(--bs-body-font-weight); text-align: var(--bs-body-text-align);\">lorem ipsum dolor</span></p>', 4, '2024-12-21 04:35:00', '2025-04-29 21:42:03');
+INSERT INTO `dokumen` (`id`, `kategori`, `judul`, `ringkasan`, `dokumen`, `id_user_tingkat_1`, `status_tingkat_1`, `updated_at_tingkat_1`, `created_at`, `updated_at`, `created_by`) VALUES
+(1, 'INV', 'Penawaran Harga Sistem POS', '', '1751328571_f31e28c2bdaedd7f7584.pdf', 1, 'MENUNGGU PERSETUJUAN', NULL, '2025-07-01 07:09:31', '2025-07-01 07:09:31', 1);
 
 -- --------------------------------------------------------
 
@@ -86,7 +83,7 @@ INSERT INTO `berita` (`id`, `created_by`, `judul`, `slug`, `sampul`, `konten`, `
 
 CREATE TABLE `form_input` (
   `id` bigint NOT NULL,
-  `kode` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
+  `kode` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `slug` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `harga` int NOT NULL,
@@ -115,59 +112,9 @@ INSERT INTO `form_input` (`id`, `kode`, `nama`, `slug`, `harga`, `deskripsi`, `d
 (9, 'J8HYS', 'Rerum rem possimus dolorem aut', '', 251047, '', '', '', '2025-02-11 05:25:05', '', '', 'Tidak', '2025-02-13 21:13:30', '2025-02-13 21:13:30'),
 (10, 'EWHQF', 'In necessitatibus ipsa quam', '', 190738, '', '', '', '2025-01-28 00:04:37', '', '', 'Tidak', '2025-02-13 21:13:30', '2025-05-03 15:56:50'),
 (11, '2LKAN', 'Est illum temporibu', '', 145998, '', '', '', '2025-02-11 02:19:22', '', '', 'Tidak', '2025-02-13 21:13:30', '2025-05-04 10:12:47'),
-(12, 'EHU7P', 'Similique velit veniam alias itaqu', '', 243739, '', '', '', '2025-01-22 07:57:49', '', '', 'Tidak', '2025-02-13 21:13:30', '2025-05-04 10:13:37'),
 (13, 'GSAUL', 'Veniam sunt qui eos facere qui', '', 213190, '', '', '', '2025-02-04 13:07:23', '', '', 'Iya', '2025-02-13 21:13:30', '2025-02-13 21:13:30'),
 (14, 'TFKTO', 'Consequuntur temporibus doloribus ducimus', '', 19004, '', '', '', '2025-02-12 22:02:44', '', '', 'Iya', '2025-02-13 21:13:30', '2025-02-13 21:13:30'),
 (15, 'PAXDQ', 'Vitae sit eosss', '', 160586, '', '', '', '2025-01-17 02:03:28', '', '', 'Iya', '2025-02-13 21:13:30', '2025-05-04 10:03:58');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `galeri`
---
-
-CREATE TABLE `galeri` (
-  `id` bigint NOT NULL,
-  `created_by` bigint NOT NULL,
-  `gambar` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `judul` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `tautan` varchar(2048) COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `galeri`
---
-
-INSERT INTO `galeri` (`id`, `created_by`, `gambar`, `judul`, `tautan`, `created_at`, `updated_at`) VALUES
-(1, 1, 'dummy_592535212.jpg', 'Molestiae sunt deleniti velit et.', 'http://purnawati.go.id/magnam-et-qui-vero-vel-ut-voluptas-et', '2024-12-19 20:11:35', '2024-12-19 20:11:35'),
-(2, 2, 'dummy_1916795239.jpg', 'Ex consequatur.', 'http://mandala.net/ut-enim-quasi-quia-deleniti-aperiam.html', '2024-12-19 20:11:35', '2024-12-19 20:11:35'),
-(3, 2, 'dummy_1402639638.jpg', 'Molestiae sapiente vel nobis', 'https://www.gunawan.my.id/consequatur-quo-architecto-fugit-aliquid-dolorum-natus', '2024-12-20 05:30:28', '2024-12-20 05:30:28'),
-(5, 2, 'dummy_438974928.jpg', 'Omnis beatae recusandae', 'http://www.nasyiah.sch.id/iusto-cumque-unde-est-ad', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(6, 1, 'dummy_1613145720.jpg', 'Nulla error nihil rerum', 'http://www.sudiati.net/autem-ut-et-qui-et-et.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(7, 1, 'dummy_753756337.jpg', 'Omnis nihil ut voluptates ipsa aut', 'http://kuswandari.mil.id/corporis-temporibus-aut-aliquam-repudiandae.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(8, 2, 'dummy_1730095792.jpg', 'Doloribus neque ratione', 'http://www.rahmawati.net/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(9, 2, 'dummy_171867886.jpg', 'Tempora nostrum magnam eos', 'http://www.gunarto.sch.id/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(10, 1, 'dummy_1695308228.jpg', 'Est aut quis unde', 'http://www.hassanah.sch.id/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(11, 1, 'dummy_1358457529.jpg', 'Voluptate beatae sint eum facilis', 'http://www.latupono.go.id/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(12, 2, 'dummy_1637443188.jpg', 'Iusto harum eius cupiditate', 'http://www.halim.name/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(13, 1, 'dummy_532169034.jpg', 'Aliquid occaecati omnis autem', 'http://haryanto.id/tempore-facilis-totam-dolorem-incidunt-incidunt-distinctio', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(14, 1, 'dummy_486249263.jpg', 'Dolorem suscipit unde molestiae', 'http://maryati.biz/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(15, 1, 'dummy_2037382616.jpg', 'Fugit iusto quaerat', 'http://www.andriani.co.id/', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(16, 2, 'dummy_1636745884.jpg', 'Ut non dolorem porro', 'https://prakasa.my.id/error-repudiandae-voluptatum-dolorum-labore-labore-excepturi.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(17, 1, 'dummy_45114566.jpg', 'Voluptatum et et', 'http://www.sudiati.co.id/iure-non-quis-non-esse-quo', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(18, 1, 'dummy_999165819.jpg', 'Et ullam occaecati adipisci voluptas', 'https://halim.sch.id/voluptate-illo-aut-voluptate-sit-rerum-similique.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(19, 1, 'dummy_417981656.jpg', 'Quisquam est non', 'http://farida.sch.id/at-quod-molestiae-asperiores-rerum-eaque', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(20, 1, 'dummy_1371343165.jpg', 'Voluptatum sint maxime hic modi', 'http://zulaika.ac.id/repudiandae-sed-nobis-omnis-inventore-saepe-tenetur-amet', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(21, 1, 'dummy_635125427.jpg', 'Fugit nam ut', 'http://sitompul.net/perferendis-eligendi-iure-natus-nesciunt-doloribus-neque-quos', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(22, 2, 'dummy_191539101.jpg', 'Quidem illo est', 'https://pratiwi.co/ea-non-maiores-sed-et-voluptatem.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(23, 2, 'dummy_1551580354.jpg', 'Architecto modi ipsa quibusdam autem placeat cupiditate', 'https://nashiruddin.or.id/totam-officiis-beatae-et.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(24, 2, 'dummy_461552369.jpg', 'Voluptas quibusdam veniam omnis et aut omnis', 'http://uwais.go.id/quas-facere-voluptas-labore-corrupti-soluta.html', '2024-12-20 05:31:41', '2024-12-20 05:31:41'),
-(25, 1, 'dummy_1171947159.jpg', 'Iste similique nulla reiciendis aut et voluptates', 'http://www.haryanto.co.id/et-occaecati-exercitationem-sit', '2024-12-20 05:44:39', '2025-04-23 19:04:15'),
-(26, 2, 'dummy_1759333613.jpg', 'Mollitia aut dolore reprehenderit omnis delectus repudiandae', 'http://mahendra.in/voluptatem-sequi-velit-omnis-occaecati-non-laudantium-eum-non', '2024-12-20 05:44:39', '2024-12-20 05:44:39'),
-(27, 2, 'dummy_493500076.jpg', 'Maiores quam et', 'http://www.pudjiastuti.net/', '2024-12-20 05:44:39', '2024-12-20 05:44:39'),
-(29, 2, 'dummy_193632911.jpg', 'Ut et repellat', 'http://www.safitri.in/et-autem-est-laborum-quo-molestias-sit-at', '2024-12-20 05:44:39', '2024-12-20 05:44:39');
 
 -- --------------------------------------------------------
 
@@ -187,28 +134,8 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama`, `created_at`, `updated_at`) VALUES
-(1, 'Balitaa', '2024-02-04 20:24:55', '2025-04-26 08:27:22'),
-(2, 'PAUD', '2024-05-10 11:06:54', '2025-04-23 14:01:47'),
-(3, 'TK', '2024-05-10 11:06:59', '2025-03-18 06:23:58'),
-(4, 'SD', '2024-05-10 11:07:05', '2025-02-04 06:42:08'),
-(5, 'SMP', '2024-05-10 11:07:22', '2025-03-18 06:24:05'),
-(6, 'SMA', '2024-05-10 11:07:26', '2024-05-10 11:07:26'),
-(7, 'D3', '2024-05-10 11:07:45', '2024-05-10 11:07:52'),
-(8, 'D4 / S1', '2024-05-10 11:08:02', '2024-05-10 11:08:02'),
-(9, 'S2', '2024-05-10 11:08:07', '2024-05-10 11:08:07'),
-(10, 'S3', '2024-05-10 11:08:13', '2025-02-08 10:23:49'),
-(11, 'Kelurahan', '2024-05-10 11:08:26', '2024-05-10 11:08:26'),
-(12, 'Kecamatan', '2024-05-10 11:08:31', '2024-05-10 11:08:31'),
-(13, 'Sore', '2024-05-10 11:13:17', '2024-05-10 11:13:17'),
-(14, 'siang', '2024-05-10 11:13:23', '2024-05-10 11:13:23'),
-(15, 'Sekola', '2024-05-10 11:13:38', '2024-05-10 11:13:38'),
-(17, 'Bokeso', '2024-05-10 11:14:03', '2024-05-10 11:14:03'),
-(18, 'Bass', '2024-05-10 11:14:16', '2024-05-10 11:14:16'),
-(19, 'Surabaya', '2024-06-10 08:38:59', '2024-06-10 08:38:59'),
-(20, 'Kokoko', '2024-06-10 08:50:06', '2024-06-10 08:50:06'),
-(21, 'Jakarta', '2024-06-10 08:50:14', '2024-06-10 08:50:14'),
-(22, 'Bandung', '2024-10-17 08:34:20', '2024-10-26 07:28:39'),
-(25, 'Apaan tuh', '2024-10-26 08:34:34', '2024-11-17 21:29:16');
+(1, 'INV', '2025-07-01 05:50:27', '2025-07-01 11:58:15'),
+(2, 'ATK', '2025-07-01 05:57:07', '2025-07-01 11:58:24');
 
 -- --------------------------------------------------------
 
@@ -265,7 +192,19 @@ INSERT INTO `log_login` (`id`, `id_user`, `id_role`, `nama_user`, `username`, `i
 (36, 2, 2, 'Admin', 'admin', '::1', 'Success', '2025-06-12 18:10:22', '2025-06-12 18:10:22'),
 (37, 2, 2, 'Admin', 'admin', '::1', 'Success', '2025-06-13 05:07:33', '2025-06-13 05:07:33'),
 (38, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-13 10:09:02', '2025-06-13 10:09:02'),
-(39, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-13 10:41:06', '2025-06-13 10:41:06');
+(39, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-13 10:41:06', '2025-06-13 10:41:06'),
+(40, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-24 09:47:47', '2025-06-24 09:47:47'),
+(41, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-25 07:25:53', '2025-06-25 07:25:53'),
+(42, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-25 13:06:16', '2025-06-25 13:06:16'),
+(43, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-25 19:51:43', '2025-06-25 19:51:43'),
+(44, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-26 10:22:59', '2025-06-26 10:22:59'),
+(45, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-29 05:08:34', '2025-06-29 05:08:34'),
+(46, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-29 11:49:38', '2025-06-29 11:49:38'),
+(47, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-29 16:39:18', '2025-06-29 16:39:18'),
+(48, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-30 14:27:09', '2025-06-30 14:27:09'),
+(49, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-06-30 20:27:32', '2025-06-30 20:27:32'),
+(50, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-07-01 04:45:16', '2025-07-01 04:45:16'),
+(51, 1, 1, 'Superadmin', 'superadmin', '::1', 'Success', '2025-07-09 13:52:38', '2025-07-09 13:52:38');
 
 -- --------------------------------------------------------
 
@@ -276,7 +215,7 @@ INSERT INTO `log_login` (`id`, `id_user`, `id_role`, `nama_user`, `username`, `i
 CREATE TABLE `role` (
   `id` tinyint NOT NULL,
   `nama` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `slug` varchar(30) COLLATE utf8mb4_general_ci NOT NULL
+  `slug` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -297,6 +236,8 @@ INSERT INTO `role` (`id`, `nama`, `slug`) VALUES
 CREATE TABLE `users` (
   `id` bigint NOT NULL,
   `id_role` tinyint NOT NULL,
+  `nama_role` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `slug_role` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `nama` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -315,10 +256,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `id_role`, `nama`, `username`, `email`, `password`, `foto`, `jenis_kelamin`, `alamat`, `no_hp`, `token_reset_password`, `token_reset_password_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Superadmin', 'superadmin', '', '$2y$10$mVEvojJB5S6yx0DpBklmYOFSmvI6k8WqqKuAZxLu7w3dFGBXxXLqa', '1701744923_ef8be205f9a3eefa1576.png', 'Laki-laki', '', '', '', NULL, '2022-10-21 14:14:28', '2025-05-17 07:02:32'),
-(2, 2, 'Admin', 'admin', '', '$2y$10$n/OatAFPw/Bto8O/Iu1bHOLAkVnjsXSbT/W.ciOGMPhUge0r.1AyK', '', 'Laki-laki', '', '', '', NULL, '2022-10-21 12:13:48', '2025-06-13 10:08:26'),
-(3, 3, 'Fatwa Aulia', '', 'fatwaaulia.fy@gmail.com', '$2y$10$efUkysj0Aln.eesYy1Ft1.C6IS3XrS/PJK87Z8ZE/Otq0MHPS4LKi', '', 'Perempuan', 'Dsn. Lidah RT/RW 002/003', '', 'o8i2DhlfYzwQ6HOF1IGceJDxRv92LGVm', '2024-10-25 05:04:14', '2024-04-27 20:10:01', '2025-04-27 16:55:34');
+INSERT INTO `users` (`id`, `id_role`, `nama_role`, `slug_role`, `nama`, `username`, `email`, `password`, `foto`, `jenis_kelamin`, `alamat`, `no_hp`, `token_reset_password`, `token_reset_password_at`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Superadmin', 'superadmin', 'Superadmin', 'superadmin', '', '$2y$10$mVEvojJB5S6yx0DpBklmYOFSmvI6k8WqqKuAZxLu7w3dFGBXxXLqa', '1701744923_ef8be205f9a3eefa1576.jpg', 'Laki-laki', '', '', '', NULL, '2022-10-21 14:14:28', '2025-07-09 13:57:19'),
+(2, 2, 'Admin', 'admin', 'Admin', 'admin', '', '$2y$10$n/OatAFPw/Bto8O/Iu1bHOLAkVnjsXSbT/W.ciOGMPhUge0r.1AyK', '', 'Laki-laki', '', '', '', NULL, '2022-10-21 12:13:48', '2025-07-09 13:57:23'),
+(3, 3, 'Started', 'started', 'Fatwa Aulia', '', 'fatwaaulia.fy@gmail.com', '$2y$10$efUkysj0Aln.eesYy1Ft1.C6IS3XrS/PJK87Z8ZE/Otq0MHPS4LKi', '', 'Perempuan', 'Dsn. Lidah RT/RW 002/003', '', 'o8i2DhlfYzwQ6HOF1IGceJDxRv92LGVm', '2024-10-25 05:04:14', '2024-04-27 20:10:01', '2025-07-09 13:57:28');
 
 --
 -- Indexes for dumped tables
@@ -331,21 +272,15 @@ ALTER TABLE `app_settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `berita`
+-- Indexes for table `dokumen`
 --
-ALTER TABLE `berita`
+ALTER TABLE `dokumen`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `form_input`
 --
 ALTER TABLE `form_input`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `galeri`
---
-ALTER TABLE `galeri`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -383,10 +318,10 @@ ALTER TABLE `app_settings`
   MODIFY `id` tinyint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `berita`
+-- AUTO_INCREMENT for table `dokumen`
 --
-ALTER TABLE `berita`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `dokumen`
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `form_input`
@@ -395,22 +330,16 @@ ALTER TABLE `form_input`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `galeri`
---
-ALTER TABLE `galeri`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `log_login`
 --
 ALTER TABLE `log_login`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `role`

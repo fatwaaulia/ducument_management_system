@@ -48,13 +48,13 @@ $routes->get('email-layout', 'AppSettings::emailLayout');
 $id_role   = userSession('id_role');
 $slug_role = userSession('slug_role');
 
-if (in_array($id_role, [1, 2])) {
+if (session()->isLogin) {
     $routes->get("$slug_role/dashboard", "Dashboard::$slug_role", ['filter' => 'EnsureLogin']);
-    $routes->get("$slug_role/profile", "Administrator::profile", ['filter' => 'EnsureLogin']);
+    $routes->get("$slug_role/profile", "Profile::profilev1", ['filter' => 'EnsureLogin']);
     $routes->group("api/profile", ['filter' => 'EnsureLogin'], static function ($routes) {
-        $routes->post('update', 'Administrator::updateProfile');
-        $routes->post('update/password', 'Administrator::updatePassword');
-        $routes->post('delete/photo', 'Administrator::deletePhoto');
+        $routes->post('update', 'Profile::updateProfilev1');
+        $routes->post('update/password', 'Profile::updatePassword');
+        $routes->post('delete/photo', 'Profile::deletePhoto');
     });
 }
 
