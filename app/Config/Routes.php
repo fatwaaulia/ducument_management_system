@@ -79,7 +79,7 @@ if (in_array($id_role, roleAccessByTitle('Maintenance'))) {
     });
 }
 
-if (in_array($id_role, roleAccessByTitle('Log Login'))) {
+if (userSession('id_role') == 1) {
     $routes->get("$slug_role/log-login", 'LogLogin::main', ['filter' => 'EnsureLogin']);
     $routes->group('api/log-login', ['filter' => 'EnsureLogin'], static function ($routes) {
         $routes->get('/', 'LogLogin::index');

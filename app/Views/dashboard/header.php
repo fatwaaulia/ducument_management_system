@@ -6,7 +6,7 @@ $description  = $app_settings['deskripsi'];
 ?>
 
 <!DOCTYPE html>
-<html id="html">
+<html lang="id" id="html">
 <head>
     <meta name="robots" content="noindex">
     <meta charset="utf-8">

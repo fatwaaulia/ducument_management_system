@@ -26,10 +26,11 @@ async function deleteDataWithValidation(form, endpoint) {
             // Menangani semua elemen id="invalid_*" dan menampilkan pesan error secara dinamis
             Array.from(form.querySelectorAll('[id^="invalid_"]')).forEach(element => {
                 const field = element.id.replace('invalid_', '');
-                const element_by_name = form.querySelector(`[name="${field}"]`);
+                const element_by_name = form.querySelector(`[name="${field}"]`) || form.querySelector(`[name="${field}[]"]`);
                 element.textContent = data.errors?.[field] || '';
-                if (element_by_name && element_by_name.type !== 'radio') {
+                if (element_by_name && !['radio', 'checkbox'].includes(element_by_name.type)) {
                     element_by_name.classList.toggle('is-invalid', !!data.errors?.[field]);
+                    element_by_name.nextElementSibling?.querySelector('.dselect-wrapper > .form-select')?.classList.toggle('is-invalid', !!data.errors?.[field]);
                 }
             });
 

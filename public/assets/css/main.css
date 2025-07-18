@@ -1,6 +1,6 @@
 :root {
     --main-color: #6777ef;
-    --main-color-hover: #5969e1;
+    --main-color-hover: color-mix(in srgb, var(--main-color), black 10%);
     --dark-color: #202124;
     --light-color: #fafafa;
     --gray-color: #aab7cf;
@@ -56,6 +56,8 @@ a, a:hover {
     text-decoration: none!important;
     cursor: pointer;
 }
+a { color: var(--main-color); }
+a:hover { color: var(--main-color-hover); }
 
 hr { opacity: unset; }
 
@@ -128,6 +130,28 @@ body.modal-open .header { padding: 0 20px!important; }
 
 .bg-primary { background: var(--main-color)!important; }
 
+.bg-primary-subtle {
+    background-color: color-mix(in srgb, var(--main-color), white 80%)!important;
+}
+
+.alert-primary {
+    background-color: color-mix(in srgb, var(--main-color), white 80%);
+    border-color: color-mix(in srgb, var(--main-color), white 50%);
+    color: color-mix(in srgb, var(--main-color), black 60%);
+}
+
+[data-bs-theme=dark] {
+    .bg-primary-subtle {
+        background-color: color-mix(in srgb, var(--main-color), black 80%)!important;
+    }
+
+    .alert-primary {
+        background-color: color-mix(in srgb, var(--main-color), black 80%);
+        border-color: color-mix(in srgb, var(--main-color), black 50%);
+        color: color-mix(in srgb, var(--main-color), white 60%);
+    }
+}
+
 .card,
 .badge,
 .accordion-item,
@@ -161,13 +185,9 @@ body.modal-open .header { padding: 0 20px!important; }
     color: var(--light-color);
 }
 
-.btn-check:checked + .btn.btn-primary,
-.btn.btn-primary.active,
-.btn.btn-primary.show,
-.btn.btn-primary:first-child:active,
-:not(.btn-check) + .btn.btn-primary:active {
-  color: var(--light-color) !important;
-  background-color: var(--main-color);
+.btn-check:checked+.btn.btn-outline-primary {
+    color: var(--light-color)!important;
+    background-color: var(--main-color);
 }
 
 .pagination .page-item:not(.active) .page-link {
