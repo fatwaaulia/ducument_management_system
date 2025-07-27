@@ -9,6 +9,10 @@
     scroll-behavior: smooth;
 }
 
+[data-bs-theme=dark] {
+    --box-shadow-form-input: 0 0 0 .25rem color-mix(in srgb, var(--main-color), black 50%);
+}
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #eee!important; }
 ::-webkit-scrollbar-thumb { background: var(--gray-color)!important; }
@@ -129,6 +133,8 @@ body.modal-open .header { padding: 0 20px!important; }
 .text-light { color: var(--light-color)!important; }
 
 .bg-primary { background: var(--main-color)!important; }
+.bg-dark { background-color: var(--dark-color)!important; }
+.bg-light { background-color: var(--light-color)!important; }
 
 .bg-primary-subtle {
     background-color: color-mix(in srgb, var(--main-color), white 80%)!important;
@@ -296,9 +302,9 @@ input:focus,
     text-overflow: ellipsis;
 }
 
-.form-select:not([multiple]) + .dselect-wrapper .form-select {
-    max-height: 41.6px;
-    display: ruby!important;
+.dselect-wrapper .form-select:not([multiple]) {
+    max-height: 41.1px;
+    overflow: hidden;
 }
 
 .dselect-wrapper .form-select.show {
@@ -424,60 +430,16 @@ body.swal2-shown { padding-right: 0px!important; }
 }
 
 /*--------------------------------------------------------------
-  # Loading Ellipsis
+  # Lazy Shimmer
 --------------------------------------------------------------*/
-.loading-ellipsis {
-	display: inline-block;
-	position: relative;
-	width: 60px;
-	height: 9px;
+.lazy-shimmer {
+    display: block;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 100%;
+    animation: shimmer 1.2s infinite linear;
 }
 
-.loading-ellipsis div {
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-    background: var(--gray-color);
-}
-
-[data-bs-theme=dark] {
-    .loading-ellipsis div {
-        background: #dee2e6;
-    }
-}
-
-.loading-ellipsis div:nth-child(1) {
-	left: 0px;
-	animation: loading-ellipsis1 0.5s infinite;
-}
-
-.loading-ellipsis div:nth-child(2) {
-	left: 0px;
-	animation: loading-ellipsis2 0.5s infinite;
-}
-
-.loading-ellipsis div:nth-child(3) {
-	left: 24px;
-	animation: loading-ellipsis2 0.5s infinite;
-}
-
-.loading-ellipsis div:nth-child(4) {
-	left: 48px;
-	animation: loading-ellipsis3 0.5s infinite;
-}
-
-@keyframes loading-ellipsis1 {
-	0% { transform: scale(0); }
-	100% { transform: scale(1); }
-}
-
-@keyframes loading-ellipsis3 {
-	0% { transform: scale(1); }
-	100% { transform: scale(0); }
-}
-
-@keyframes loading-ellipsis2 {
-	0% { transform: translate(0, 0); }
-	100% { transform: translate(24px, 0); }
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
 }

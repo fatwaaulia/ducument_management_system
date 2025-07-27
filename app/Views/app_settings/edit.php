@@ -52,10 +52,10 @@
                                         <label for="logo" class="form-label">Logo</label>
                                         <div class="position-relative">
                                             <img src="<?= webFile($base_name, $data['logo'], $data['updated_at'], true) ?>" class="w-100 h-100 cover-center" id="frame_logo">
-                                            <div class="position-absolute" style="bottom:0px;right:0px">
-                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#logo').click()">
+                                            <div class="position-absolute" style="bottom:0px; right:0px;">
+                                                <label for="logo" class="btn btn-secondary rounded-circle" style="padding: 8px;">
                                                     <i class="fa-solid fa-camera fa-lg"></i>
-                                                </button>
+                                                </label>
                                                 <input type="file" class="form-control d-none" id="logo" name="logo" accept=".png,.jpg,.jpeg" onchange="dom('#frame_logo').src = window.URL.createObjectURL(this.files[0]);">
                                             </div>
                                         </div>
@@ -65,10 +65,10 @@
                                         <label for="favicon" class="form-label">Favicon</label>
                                         <div class="position-relative">
                                             <img src="<?= webFile($base_name, $data['favicon'], $data['updated_at'], true) ?>" class="w-100 cover-center" id="frame_favicon">
-                                            <div class="position-absolute" style="bottom:0px;right:0px">
-                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#favicon').click()">
+                                            <div class="position-absolute" style="bottom:0px; right:0px;">
+                                                <label for="favicon" class="btn btn-secondary rounded-circle" style="padding: 8px;">
                                                     <i class="fa-solid fa-camera fa-lg"></i>
-                                                </button>
+                                                </label>
                                                 <input type="file" class="form-control d-none" id="favicon" name="favicon" accept=".png,.jpg,.jpeg" onchange="dom('#frame_favicon').src = window.URL.createObjectURL(this.files[0]);">
                                             </div>
                                         </div>

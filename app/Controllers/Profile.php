@@ -10,9 +10,9 @@ class Profile extends BaseController
 
     public function __construct()
     {
-        $this->base_name    = 'profile';
-        $this->model_name   = 'Users';
-        $this->upload_path  = dirUpload() . 'users/';
+        $this->base_name   = 'profile';
+        $this->model_name  = 'Users';
+        $this->upload_path = dirUpload() . 'users/';
     }
 
     /*--------------------------------------------------------------
@@ -71,11 +71,12 @@ class Profile extends BaseController
         }
 
         $data = [
-            'nama'     => ucwords($this->request->getVar('nama')),
-            'foto'     => $filename_foto,
-            'alamat'   => $this->request->getVar('alamat'),
-            'no_hp'    => $this->request->getVar('no_hp'),
-            'username' => $this->request->getVar('username'),
+            'nama'          => ucwords($this->request->getVar('nama')),
+            'foto'          => $filename_foto,
+            'jenis_kelamin' => $this->request->getVar('jenis_kelamin'),
+            'alamat'        => $this->request->getVar('alamat'),
+            'no_hp'         => $this->request->getVar('no_hp'),
+            'username'      => $this->request->getVar('username'),
         ];
 
         model($this->model_name)->update($id, $data);

@@ -2,9 +2,6 @@
 
 namespace App\Controllers;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 class Users extends BaseController
 {
     protected $base_name;
@@ -67,14 +64,8 @@ class Users extends BaseController
     --------------------------------------------------------------*/
     public function index()
     {
-        $select = [
-            'a.*',
-            'b.nama as nama_role',
-            'b.slug as slug_role',
-        ];
-        $base_query = db_connect()->table("{$this->base_name} a")
-        ->select($select)
-        ->join('role b', 'b.id = a.id_role');
+        $select          = ['*'];
+        $base_query      = model($this->model_name)->select($select);
         $limit           = (int)$this->request->getVar('length');
         $offset          = (int)$this->request->getVar('start');
         $records_total   = $base_query->countAllResults(false);
@@ -118,6 +109,7 @@ class Users extends BaseController
     public function create()
     {
         $id_role = $this->request->getVar('id_role');
+        $role = model('Role')->find($id_role);
         if (in_array($id_role, [1, 2])) {
             $required_username = 'required';
             $required_email = 'permit_empty';
@@ -127,16 +119,15 @@ class Users extends BaseController
         }
 
         $rules = [
-            'id_role'       => [ 'label' => 'role', 'rules' => 'required' ],
-            'nama'          => 'required',
-            'username'      => "$required_username|alpha_numeric|is_unique[$this->base_name.username]",
-            'email'         => "$required_email|valid_email|is_unique[$this->base_name.email]",
-            'password'      => 'required|min_length[3]|matches[passconf]',
-            'passconf'      => 'required|min_length[3]|matches[password]',
-            'jenis_kelamin' => 'required',
-            'foto'          => 'max_size[foto,2048]|ext_in[foto,png,jpg,jpeg]|mime_in[foto,image/png,image/jpeg]|is_image[foto]',
-            'alamat'        => 'max_length[255]',
-            'no_hp'         => 'permit_empty|numeric|min_length[10]|max_length[20]',
+            'id_role'  => [ 'label' => 'role', 'rules' => 'required' ],
+            'nama'     => 'required',
+            'username' => "$required_username|alpha_numeric|is_unique[$this->base_name.username]",
+            'email'    => "$required_email|valid_email|is_unique[$this->base_name.email]",
+            'password' => 'required|min_length[3]|matches[passconf]',
+            'passconf' => 'required|min_length[3]|matches[password]',
+            'foto'     => 'max_size[foto,2048]|ext_in[foto,png,jpg,jpeg]|mime_in[foto,image/png,image/jpeg]|is_image[foto]',
+            'alamat'   => 'max_length[255]',
+            'no_hp'    => 'permit_empty|numeric|min_length[10]|max_length[20]',
         ];
         if (! $this->validate($rules)) {
             $errors = array_map(fn($error) => str_replace('_', ' ', $error), $this->validator->getErrors());
@@ -162,7 +153,9 @@ class Users extends BaseController
 
         $password = trim($this->request->getVar('password'));
         $data = [
-            'id_role'       => $id_role,
+            'id_role'       => $role['id'],
+            'nama_role'     => $role['nama'],
+            'slug_role'     => $role['slug'],
             'nama'          => ucwords($this->request->getVar('nama')),
             'username'      => strtolower($this->request->getVar('username')),
             'email'         => $this->request->getVar('email', FILTER_SANITIZE_EMAIL),
@@ -187,6 +180,7 @@ class Users extends BaseController
         $find_data = model($this->model_name)->find($id);
 
         $id_role = $this->request->getVar('id_role');
+        $role = model('Role')->find($id_role);
         if (in_array($id_role, [1, 2])) {
             $required_username = 'required';
             $required_email = 'permit_empty';
@@ -196,16 +190,15 @@ class Users extends BaseController
         }
 
         $rules = [
-            'id_role'       => [ 'label' => 'role', 'rules' => 'required' ],
-            'nama'          => 'required',
-            'username'      => "$required_username|alpha_numeric|is_unique[$this->base_name.username,id,$id]",
-            'email'         => "$required_email|valid_email|is_unique[$this->base_name.email,id,$id]",
-            'password'      => 'permit_empty|min_length[3]|matches[passconf]',
-            'passconf'      => 'permit_empty|min_length[3]|matches[password]',
-            'jenis_kelamin' => 'required',
-            'foto'          => 'max_size[foto,2048]|ext_in[foto,png,jpg,jpeg]|mime_in[foto,image/png,image/jpeg]|is_image[foto]',
-            'alamat'        => 'max_length[255]',
-            'no_hp'         => 'permit_empty|numeric|min_length[10]|max_length[20]',
+            'id_role'  => [ 'label' => 'role', 'rules' => 'required' ],
+            'nama'     => 'required',
+            'username' => "$required_username|alpha_numeric|is_unique[$this->base_name.username,id,$id]",
+            'email'    => "$required_email|valid_email|is_unique[$this->base_name.email,id,$id]",
+            'password' => 'permit_empty|min_length[3]|matches[passconf]',
+            'passconf' => 'permit_empty|min_length[3]|matches[password]',
+            'foto'     => 'max_size[foto,2048]|ext_in[foto,png,jpg,jpeg]|mime_in[foto,image/png,image/jpeg]|is_image[foto]',
+            'alamat'   => 'max_length[255]',
+            'no_hp'    => 'permit_empty|numeric|min_length[10]|max_length[20]',
         ];
         if (!$this->validate($rules)) {
             $errors = array_map(fn($error) => str_replace('_', ' ', $error), $this->validator->getErrors());
@@ -231,7 +224,9 @@ class Users extends BaseController
 
         $password = trim($this->request->getVar('password'));
         $data = [
-            'id_role'       => $id_role,
+            'id_role'       => $role['id'],
+            'nama_role'     => $role['nama'],
+            'slug_role'     => $role['slug'],
             'nama'          => ucwords($this->request->getVar('nama')),
             'username'      => strtolower($this->request->getVar('username')),
             'email'         => $this->request->getVar('email', FILTER_SANITIZE_EMAIL),
@@ -279,59 +274,5 @@ class Users extends BaseController
             'status'  => 'success',
             'message' => 'Foto berhasil dihapus',
         ]);
-    }
-
-    /*--------------------------------------------------------------
-    # Export Excel
-    --------------------------------------------------------------*/
-    public function exportExcel()
-    {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        // Get Data
-        $response = $this->index()->getBody();
-        $response = json_decode($response, true);
-        $data = $response['data'];
-
-        // Header
-        $header_row = 1;
-        $sheet->setCellValue('A' . $header_row, 'No.');
-        $sheet->setCellValue('B' . $header_row, 'Role');
-        $sheet->setCellValue('C' . $header_row, 'Nama Lengkap');
-        $sheet->setCellValue('D' . $header_row, 'Jenis Kelamin');
-        $sheet->setCellValue('E' . $header_row, 'Alamat');
-        $sheet->setCellValue('F' . $header_row, 'No. HP');
-        $sheet->setCellValue('G' . $header_row, 'Email');
-        $sheet->getStyle("A$header_row:{$sheet->getHighestColumn()}$header_row")->getFont()->setBold(true);
-
-        $sheet->getStyle('A' . $header_row)->getAlignment()->setHorizontal('center');
-
-        // Data
-        foreach ($data as $key => $v) {
-            $data_row = $key+2;
-            $sheet->setCellValueExplicit('A' . $data_row, $key+1, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $sheet->setCellValue('B' . $data_row, $v['nama_role']);
-            $sheet->setCellValue('C' . $data_row, $v['nama']);
-            $sheet->setCellValue('D' . $data_row, $v['jenis_kelamin']);
-            $sheet->setCellValue('E' . $data_row, $v['alamat']);
-            $sheet->setCellValueExplicit('F' . $data_row, $v['no_hp'], \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
-            $sheet->setCellValue('G' . $data_row, $v['email']);
-
-            $sheet->getStyle('A' . $data_row)->getAlignment()->setHorizontal('center');
-        }
-
-        // Lebar Kolom Sesuai Isinya
-        foreach (range('A', $sheet->getHighestColumn()) as $col) $sheet->getColumnDimension($col)->setAutoSize(true);
-
-        $filename = 'data_users.xlsx';
-
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header("Content-Disposition: attachment; filename=\"$filename\"");
-        header('Cache-Control: max-age=0');
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('php://output');
-        exit;
     }
 }

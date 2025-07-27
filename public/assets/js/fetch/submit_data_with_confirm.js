@@ -16,7 +16,7 @@ async function submitDataWithConfirm(form, endpoint, confirm_title = '', confirm
         if (result.isConfirmed) {
             tombol_submit.disabled = true;
             tombol_submit.style.width = tombol_submit.getBoundingClientRect().width + 'px';
-            tombol_submit.innerHTML = `<div class="loading-ellipsis"> <div></div> <div></div> <div></div> <div></div> </div>`;
+            tombol_submit.innerHTML = `<div class="spinner-border spinner-border-sm"></div>`;
         
             const form_data = new FormData(form);
             const response = await fetch(endpoint, {

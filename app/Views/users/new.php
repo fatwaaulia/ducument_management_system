@@ -17,7 +17,7 @@
                                         <div class="position-relative">
                                             <img src="<?= base_url('assets/uploads/user-default.png') ?>" class="wh-150 cover-center rounded-circle" id="frame_foto">
                                             <div class="position-absolute" style="bottom: 0px; right: 0px;">
-                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px 10px;" type="button" onclick="dom('#foto').click()">
+                                                <button class="btn btn-secondary rounded-circle" style="padding: 8px;" type="button" onclick="dom('#foto').click()">
                                                     <i class="fa-solid fa-camera fa-xl"></i>
                                                 </button>
                                                 <input type="file" class="form-control d-none" id="foto" name="foto" accept=".png,.jpg,.jpeg" onchange="dom('#frame_foto').src = window.URL.createObjectURL(this.files[0]);">

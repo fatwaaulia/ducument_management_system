@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, {
                 name: 'alamat',
                 data: 'alamat',
+                className: 'text-wrap',
             }, {
                 name: 'no_hp',
                 data: 'no_hp',

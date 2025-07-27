@@ -3,7 +3,7 @@ async function submitData(form, endpoint) {
     let original_text = tombol_submit.innerHTML;
     tombol_submit.disabled = true;
     tombol_submit.style.width = tombol_submit.getBoundingClientRect().width + 'px';
-    tombol_submit.innerHTML = `<div class="loading-ellipsis"> <div></div> <div></div> <div></div> <div></div> </div>`;
+    tombol_submit.innerHTML = `<div class="spinner-border spinner-border-sm"></div>`;
 
     try {
         const form_data = new FormData(form);
